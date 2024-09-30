@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: example_db
+    schema: main  
+    tables:
+      - name: orders 
+      - name: users
