@@ -1,15 +1,28 @@
-Welcome to your new dbt project!
+### Set up profile
 
-### Using the starter project
+Add the following lines to you ~/.dbt/profiles.yml:
 
-Try running the following commands:
+```yaml
+test_project:
+  outputs:
+    dev:
+      type: sqlite
+      threads: 1
+      database: "{{ env_var('DBT_PROJECT_PATH') }}/db/example.db" 
+      schema: main 
+      schemas_and_paths:
+        main: "{{ env_var('DBT_PROJECT_PATH') }}/db/example.db" 
+      schema_directory: "{{ env_var('DBT_PROJECT_PATH') }}/db"
+  target: dev
+```
+
+
+To run use the following commands:
+
+```bash
+- export DBT_PROJECT_PATH={path to project folder}
+- dbt compile
 - dbt run
 - dbt test
+```
 
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
